@@ -25,29 +25,39 @@ And, behold, thou shalt be dumb, and not able to speak, until the day that these
 
     Paragraph empty;
 	Text tmptxt;
-    
+
     Assert<string> testEmptyContent("Content of paragraph is unexpectedly non-empty", "", empty.getContent());
     testEmptyContent.equal();
     paraGroup.addAssertion(testEmptyContent);
-	
+
 	Assert<string> testEmptyType("Type of paragraph is incorrect for an empty constructor", "p", empty.getType());
 	testEmptyType.equal();
 	paraGroup.addAssertion(testEmptyType);
-	
+
 	Assert<string> testEmptyClass("CSS Class of paragraph is unexpectedly non empty for an empty constructor", "", empty.getClass());
 	testEmptyClass.equal();
 	paraGroup.addAssertion(testEmptyClass);
-	
+
 	Assert<string> testEmptyId("Id of paragraph is unexpectedly non empty for an empty constructor", "", empty.getId());
 	testEmptyId.equal();
 	paraGroup.addAssertion(testEmptyId);
-	
-	empty.setContent(luke);
-	
+
+    empty.setContent(luke);
+
+
+    //  Bug caused because one of these is formatted while the other ones are not.
+    if(empty.getContent() == tmptxt.parsePlainText(luke))
+    {
+        cout << "Unit Test error" << endl;
+    }
+
+    cout << empty.getContent().length() << " " << tmptxt.parsePlainText(luke).length() << endl;
+
+
 	Assert<string> testAddedContent("Content of paragraph is incorrect after adding content", empty.getContent(), tmptxt.parsePlainText(luke));
 	testAddedContent.equal();
 	paraGroup.addAssertion(testAddedContent);
-    
+
     return true;
 }
 
@@ -202,7 +212,7 @@ And, behold, thou shalt be dumb, and not able to speak, until the day that these
 	Paragraph outside;
 
 	inside.addElement(lukeText);
-	
+
 	outside.addElement(inside);
 	outside.addElement(secondText);
 
@@ -243,5 +253,3 @@ And, behold, thou shalt be dumb, and not able to speak, until the day that these
 //
 //
 //
-
-
