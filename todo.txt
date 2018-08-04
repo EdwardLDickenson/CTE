@@ -1,2 +1,0 @@
-*	Not all of the constructors are tested properly.  Specifically, the constructor Span(Element) constructor is not tested nor are the constructors like it in other classes
-*	Template engine (what is currently being written) should be kept sepearate from the rest of the web framework. Other modules include: database model, URL handling, etc
